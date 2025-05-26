@@ -1,8 +1,8 @@
 package com.ecohabitat.ecoaction_service.services;
 
 import com.ecohabitat.ecoaction_service.dto.HabitatDTO;
-import com.ecohabitat.ecoaction_service.exceptions.EcoactionNotFound;
-import com.ecohabitat.ecoaction_service.exceptions.EcoactionsNotFound;
+import com.ecohabitat.ecoaction_service.exceptions.EcoactionNotFoundException;
+import com.ecohabitat.ecoaction_service.exceptions.EcoactionsNotFoundException;
 import com.ecohabitat.ecoaction_service.models.Ecoaction;
 import com.ecohabitat.ecoaction_service.repositories.EcoactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +19,12 @@ public class EcoactionService {
 
     public Ecoaction getEcoactionById(long id){
         return ecoactionRepository.findById(id).
-                orElseThrow( ()-> new EcoactionNotFound("Ecoaction id :" + id + " not found"));
+                orElseThrow( ()-> new EcoactionNotFoundException("Ecoaction id :" + id + " not found"));
     }
 
     public List<Ecoaction> getEcoactions(){
         if (ecoactionRepository.findAll().isEmpty()) {
-            throw new EcoactionsNotFound("There are not Ecoactions into database");
+            throw new EcoactionsNotFoundException("There are not Ecoactions into database");
         }
         return ecoactionRepository.findAll();
     }
@@ -32,7 +32,7 @@ public class EcoactionService {
 
     public Ecoaction getEcoactionByHabitatId(long habitatId){
         return ecoactionRepository.findEcoactionByHabitatId(habitatId).
-                orElseThrow(()-> new EcoactionNotFound("habitat id :" + habitatId + " not found"));
+                orElseThrow(()-> new EcoactionNotFoundException("habitat id :" + habitatId + " not found"));
     }
 
     public Ecoaction createEcoaction(Ecoaction ecoaction){
