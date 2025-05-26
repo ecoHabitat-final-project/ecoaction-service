@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class EcoAction {
+public class Ecoaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
