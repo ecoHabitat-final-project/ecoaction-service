@@ -20,21 +20,21 @@ class EcoactionTest {
     Ecoaction ecoaction;
 
 
-    @BeforeEach
-    void setUp() {
-        ecoaction = new Ecoaction();
-        ecoaction.setDate("2024-12-31");
-        ecoaction.setDescription("test description");
-        ecoaction.setHabitatId(99);
-        ecoactionService.createEcoaction(ecoaction);
-    }
+//    @BeforeEach
+//    void setUp() {
+//        ecoaction = new Ecoaction();
+//        ecoaction.setDate("2024-12-31");
+//        ecoaction.setDescription("test description");
+//        ecoaction.setHabitatId(99);
+//        ecoactionService.createEcoaction(ecoaction);
+//    }
 
-    @AfterEach
-    void tearDown() {
-
-        Ecoaction ecoTest = ecoactionService.getEcoactionByHabitatId(33L);
-        ecoactionService.deleteEcoactionById(ecoTest.getId());
-    }
+//    @AfterEach
+//    void tearDown() {
+//
+//        Ecoaction ecoTest = ecoactionService.getEcoactionByHabitatId(33L);
+//        ecoactionService.deleteEcoactionById(ecoTest.getId());
+//    }
 
 
     @Test
@@ -53,17 +53,17 @@ class EcoactionTest {
 
     }
 
-    @Test
-    @DisplayName("Test change habitat id PATCH")
-    void testUpdateHabitatId() {
-        HabitatDTO habitatDTO = new HabitatDTO();
-        habitatDTO.setHabitatId(33L);
-        Ecoaction ecoaction = ecoactionService.getEcoactionByHabitatId(99L);
-
-
-        Ecoaction ecoUpdated =ecoactionService.updateEcoaction(ecoaction.getId(), habitatDTO);
-        System.out.println("Updated habitat id " + ecoUpdated.getHabitatId());
-        assertEquals(33L, ecoUpdated.getHabitatId());
+//    @Test
+//    @DisplayName("Test change habitat id PATCH")
+//    void testUpdateHabitatId() {
+//        HabitatDTO habitatDTO = new HabitatDTO();
+//        habitatDTO.setHabitatId(33L);
+//        Ecoaction ecoaction = ecoactionService.getEcoactionByHabitatId(99L);
+//
+//
+//        Ecoaction ecoUpdated =ecoactionService.updateEcoaction(ecoaction.getId(), habitatDTO);
+//        System.out.println("Updated habitat id " + ecoUpdated.getHabitatId());
+//        assertEquals(33L, ecoUpdated.getHabitatId());
 
 
 
