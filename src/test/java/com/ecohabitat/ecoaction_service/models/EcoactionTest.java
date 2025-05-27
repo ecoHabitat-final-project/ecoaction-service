@@ -32,7 +32,7 @@ class EcoactionTest {
     @AfterEach
     void tearDown() {
 
-        Ecoaction ecoTest = ecoactionService.getEcoactionByHabitatId(99);
+        Ecoaction ecoTest = ecoactionService.getEcoactionByHabitatId(33L);
         ecoactionService.deleteEcoactionById(ecoTest.getId());
     }
 
@@ -59,12 +59,13 @@ class EcoactionTest {
         HabitatDTO habitatDTO = new HabitatDTO();
         habitatDTO.setHabitatId(33L);
         Ecoaction ecoaction = ecoactionService.getEcoactionByHabitatId(99L);
-        System.out.println(ecoaction);
-        ecoactionService.updateEcoaction(ecoaction.getId(), habitatDTO);
 
-        //todo seguir probando este test
 
-       // assertEquals(33L, ecoaction.getHabitatId());
+        Ecoaction ecoUpdated =ecoactionService.updateEcoaction(ecoaction.getId(), habitatDTO);
+        System.out.println("Updated habitat id " + ecoUpdated.getHabitatId());
+        assertEquals(33L, ecoUpdated.getHabitatId());
+
+
 
 
     }
