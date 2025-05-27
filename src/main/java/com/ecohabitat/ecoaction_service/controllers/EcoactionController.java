@@ -28,31 +28,26 @@ public class EcoactionController {
     @Autowired
     private UserFeignClient userFeignClient;
 
-
-
-
-    // get all ecoactions
+    // get Full Ecoactions
     @GetMapping("")
-    public ResponseEntity<?> getEcoactions() {
-        List<Ecoaction> ecoactions = ecoactionService.getEcoactions();
+    public ResponseEntity<?> getAllFullEcoactions() {
+        List<EcoactionResponseDTO> ecoactions = ecoactionService.getFullEcoactions();
         return new ResponseEntity<>(ecoactions, HttpStatus.OK);
     }
 
-    //ecoaction by id
-    @GetMapping("/{id}")
-    ResponseEntity<?> getEcoactionById(@PathVariable("id") long id) {
-        Ecoaction ecoactionFound = ecoactionService.getEcoactionById(id);
-        return new ResponseEntity<>(ecoactionFound, HttpStatus.OK);
+
+    @GetMapping("/{ecoactionId}")
+    public ResponseEntity<?> getFullEcoactionInfo(@PathVariable long ecoactionId) {
+
+        EcoactionResponseDTO response = ecoactionService.getFullEcoactionById(ecoactionId);
+        return ResponseEntity.ok(response);
     }
 
+    //todo
     @GetMapping("/habitat/{habitatId}")
-    ResponseEntity <?> getEcoactionByHabitat(@PathVariable("habitatId") long habitatId){
-
-    HabitatResponseDTO habitatDTO= habitatFeignClient.getHabitatById(habitatId);
-//    ResponseEntity<?> getEcoactionByHabitat(@PathVariable("habitatId") long habitatId) {
-//        Ecoaction ecoactionFound = ecoactionService.getEcoactionByHabitatId(habitatId);
-//        return new ResponseEntity<>(ecoactionFound, HttpStatus.OK);
-        return new ResponseEntity<>(habitatDTO, HttpStatus.OK);
+    ResponseEntity <?> getEcoByHabitat(@PathVariable("habitatId") long habitatId){
+        EcoactionResponseDTO response = ecoactionService.getFullEcoactionByHabitat(habitatId);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("")
@@ -74,26 +69,4 @@ public class EcoactionController {
         ecoactionService.deleteEcoactionById(ecoactionId);
         return new ResponseEntity<>("Deleted Habitat", HttpStatus.OK);
     }
-
-    @GetMapping("/full/{ecoactionId}")
-    public ResponseEntity<?> getFullEcoactionInfo(@PathVariable long ecoactionId) {
-        Ecoaction ecoaction = ecoactionService.getEcoactionById(ecoactionId);
-
-        HabitatResponseDTO habitat = habitatFeignClient.getHabitatById(ecoaction.getHabitatId());
-        UserResponseDTO user = userFeignClient.getUserById(ecoaction.getUserId());
-
-        EcoactionResponseDTO response = new EcoactionResponseDTO();
-
-        response.setId(ecoaction.getId());
-        response.setDate(ecoaction.getDate());
-        response.setDescription(ecoaction.getDescription());
-        response.setLocation(habitat.getLocation());
-        response.setType(habitat.getType());
-        response.setUserName(user.getName());
-        response.setEmail(user.getEmail());
-
-
-        return ResponseEntity.ok(response);
-    }
-
 }
