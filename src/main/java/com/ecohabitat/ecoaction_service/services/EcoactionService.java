@@ -16,6 +16,12 @@ public class EcoactionService {
     @Autowired
     EcoactionRepository ecoactionRepository;
 
+//    private final EcoactionRepository ecoactionRepository;
+//    private final HabitatRepository habitatRepository;
+//    private final UserRepository userRepository;
+
+
+
 
     public Ecoaction getEcoactionById(long id){
         return ecoactionRepository.findById(id).
