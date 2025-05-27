@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface EcoactionRepository extends JpaRepository <Ecoaction, Long> {
 
     Optional<Ecoaction> findEcoactionByHabitatId(long habitatId);
+    Optional<Ecoaction> findEcoactionByUserId(long userId);
 }

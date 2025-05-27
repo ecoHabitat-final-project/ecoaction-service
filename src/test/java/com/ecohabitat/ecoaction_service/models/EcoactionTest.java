@@ -32,7 +32,7 @@ class EcoactionTest {
     @AfterEach
     void tearDown() {
 
-        Ecoaction ecoTest = ecoactionService.getEcoactionByHabitatId(33Lgit branch);
+        Ecoaction ecoTest = ecoactionService.getEcoactionByHabitatId(33L);
         ecoactionService.deleteEcoactionById(ecoTest.getId());
     }
 

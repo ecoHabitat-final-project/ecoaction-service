@@ -21,5 +21,6 @@ public class Ecoaction {
     private String description;
     private String date;
 
+    private long userId;
     private long habitatId;
 }

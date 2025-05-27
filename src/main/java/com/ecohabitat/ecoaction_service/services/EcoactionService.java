@@ -35,6 +35,11 @@ public class EcoactionService {
                 orElseThrow(()-> new EcoactionNotFoundException("habitat id :" + habitatId + " not found"));
     }
 
+    public Ecoaction getEcoactionByUserId(long userId){
+        return ecoactionRepository.findEcoactionByUserId(userId).
+                orElseThrow(()-> new EcoactionNotFoundException("user id :" + userId + " not found"));
+    }
+
     public Ecoaction createEcoaction(Ecoaction ecoaction){
         return ecoactionRepository.save(ecoaction);
     }
