@@ -52,23 +52,7 @@ class EcoactionTest {
     void testGetEcoactions() {
         List<Ecoaction> ecoactions = ecoactionService.getEcoactions();
         assertNotNull(ecoactions);
-
     }
 
-//    @Test
-//    @DisplayName("Test change habitat id PATCH")
-//    void testUpdateHabitatId() {
-//        HabitatDTO habitatDTO = new HabitatDTO();
-//        habitatDTO.setHabitatId(33L);
-//        Ecoaction ecoaction = ecoactionService.getEcoactionByHabitatId(99L);
-//
-//
-//        Ecoaction ecoUpdated =ecoactionService.updateEcoaction(ecoaction.getId(), habitatDTO);
-//        System.out.println("Updated habitat id " + ecoUpdated.getHabitatId());
-//        assertEquals(33L, ecoUpdated.getHabitatId());
 
-
-
-
-//    }
 }
