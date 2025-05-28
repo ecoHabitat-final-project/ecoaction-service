@@ -73,7 +73,6 @@ public class EcoactionService {
         Ecoaction ecoaction = getEcoactionById(ecoactionId); //esto ya lanza una excepción
         ecoaction.setHabitatId(habitatDTO.getHabitatId());
         return ecoactionRepository.save(ecoaction);
-
     }
 
     //-----------------------------------------------------------------------------------------

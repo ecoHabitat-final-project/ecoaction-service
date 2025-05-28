@@ -63,12 +63,12 @@ public class EcoactionController {
         createEcoaction(ecoaction);
         return new ResponseEntity<>(ecoaction, HttpStatus.OK);
     }
-
+    // por si la reforma ecológica hubiera sido en otro habitat.
     @PatchMapping("/update/{ecoactionId}")
     ResponseEntity<?> updateEcoaction(@PathVariable ("ecoactionId") Long ecoactionId,
                                            @RequestBody HabitatDTO habitatDTO) {
         Ecoaction updateEcoaction = ecoactionService.updateEcoaction(ecoactionId, habitatDTO);
-        updateEcoaction.setHabitatId(habitatDTO.getHabitatId());
+        //updateEcoaction.setHabitatId(habitatDTO.getHabitatId());
         return new ResponseEntity<>(updateEcoaction, HttpStatus.OK);
     }
 
