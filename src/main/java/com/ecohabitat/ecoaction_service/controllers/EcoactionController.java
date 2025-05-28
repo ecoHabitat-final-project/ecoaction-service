@@ -36,6 +36,7 @@ public class EcoactionController {
     }
 
 
+    //Obtener ecoacción por ecoaccion ID
     @GetMapping("/{ecoactionId}")
     public ResponseEntity<?> getFullEcoactionInfo(@PathVariable long ecoactionId) {
 
@@ -43,10 +44,17 @@ public class EcoactionController {
         return ResponseEntity.ok(response);
     }
 
-    //todo
+   //obtener ecoacción por habitat ID
     @GetMapping("/habitat/{habitatId}")
     ResponseEntity <?> getEcoByHabitat(@PathVariable("habitatId") long habitatId){
-        EcoactionResponseDTO response = ecoactionService.getFullEcoactionByHabitat(habitatId);
+        EcoactionResponseDTO response = ecoactionService.getFullEcoactionByHabitatId(habitatId);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    //Obtener Ecoacción por id de usuario
+    @GetMapping("/user/{userId}")
+    ResponseEntity <?> getEcoByUser(@PathVariable("userId") long userId) {
+        EcoactionResponseDTO response = ecoactionService.getFullEcoactionByUserId(userId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -69,4 +77,9 @@ public class EcoactionController {
         ecoactionService.deleteEcoactionById(ecoactionId);
         return new ResponseEntity<>("Deleted Habitat", HttpStatus.OK);
     }
+
+    //2024-05-_28
+    // Obtener ecoacción por usuario ID
+
+
 }

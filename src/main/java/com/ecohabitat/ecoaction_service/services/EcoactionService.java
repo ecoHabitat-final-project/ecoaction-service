@@ -51,6 +51,15 @@ public class EcoactionService {
                 orElseThrow(()-> new EcoactionNotFoundException("user id :" + userId + " not found"));
     }
 
+    public EcoactionResponseDTO getFullEcoactionByUserId(long userId){
+        Ecoaction ecoaction = getEcoactionByUserId(userId);
+        EcoactionResponseDTO response = getFullEcoactionById(ecoaction.getId());
+        return response;
+
+
+    }
+
+
     public Ecoaction createEcoaction(Ecoaction ecoaction){
         return ecoactionRepository.save(ecoaction);
     }
@@ -105,22 +114,11 @@ public class EcoactionService {
 
 
 
-    public EcoactionResponseDTO getFullEcoactionByHabitat(long habitatId) {
+    public EcoactionResponseDTO getFullEcoactionByHabitatId(long habitatId) {
 
         Ecoaction ecoaction= ecoactionRepository.findEcoactionByHabitatId(habitatId).
                 orElseThrow(()-> new EcoactionNotFoundException("habitat id :" + habitatId + " not found"));
-
-        HabitatResponseDTO habitatDTO = habitatFeignClient.getHabitatById(habitatId);
-        UserResponseDTO user = userFeignClient.getUserById(ecoaction.getUserId());
-        EcoactionResponseDTO response = new EcoactionResponseDTO();
-        response.setId(ecoaction.getId());
-        response.setDate(ecoaction.getDate());
-        response.setDescription(ecoaction.getDescription());
-        response.setLocation(habitatDTO.getLocation());
-        response.setType(habitatDTO.getType());
-        response.setUserName(user.getName());
-        response.setEmail(user.getEmail());
-
+         EcoactionResponseDTO response = getFullEcoactionById(ecoaction.getId());
 
         return response;
     }
