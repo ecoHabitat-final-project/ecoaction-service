@@ -2,17 +2,12 @@ package com.ecohabitat.ecoaction_service.services;
 
 import com.ecohabitat.ecoaction_service.clients.HabitatFeignClient;
 import com.ecohabitat.ecoaction_service.clients.UserFeignClient;
-import com.ecohabitat.ecoaction_service.dto.EcoactionResponseDTO;
-import com.ecohabitat.ecoaction_service.dto.HabitatDTO;
-import com.ecohabitat.ecoaction_service.dto.HabitatResponseDTO;
-import com.ecohabitat.ecoaction_service.dto.UserResponseDTO;
+import com.ecohabitat.ecoaction_service.dto.*;
 import com.ecohabitat.ecoaction_service.exceptions.EcoactionNotFoundException;
 import com.ecohabitat.ecoaction_service.exceptions.EcoactionsNotFoundException;
 import com.ecohabitat.ecoaction_service.models.Ecoaction;
 import com.ecohabitat.ecoaction_service.repositories.EcoactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -110,9 +105,6 @@ public class EcoactionService {
         return ecoactionResponses;
     }
 
-
-
-
     public EcoactionResponseDTO getFullEcoactionByHabitatId(long habitatId) {
 
         Ecoaction ecoaction= ecoactionRepository.findEcoactionByHabitatId(habitatId).
@@ -121,6 +113,19 @@ public class EcoactionService {
 
         return response;
     }
+
+    //Crear elementos en micros remotos
+
+    public EcoUserDTO createEcoUser(EcoUserDTO ecoUserDTO){
+        return userFeignClient.createUser(ecoUserDTO);
+    }
+
+
+    public EcoHabitatDTO createEcoHabitat(EcoHabitatDTO ecoHabitatDTO){
+        return habitatFeignClient.createHabitat(ecoHabitatDTO);
+    }
+
+
 
 
 

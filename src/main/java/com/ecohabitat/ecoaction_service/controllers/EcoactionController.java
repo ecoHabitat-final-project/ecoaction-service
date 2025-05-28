@@ -2,10 +2,7 @@ package com.ecohabitat.ecoaction_service.controllers;
 
 import com.ecohabitat.ecoaction_service.clients.HabitatFeignClient;
 import com.ecohabitat.ecoaction_service.clients.UserFeignClient;
-import com.ecohabitat.ecoaction_service.dto.EcoactionResponseDTO;
-import com.ecohabitat.ecoaction_service.dto.HabitatDTO;
-import com.ecohabitat.ecoaction_service.dto.HabitatResponseDTO;
-import com.ecohabitat.ecoaction_service.dto.UserResponseDTO;
+import com.ecohabitat.ecoaction_service.dto.*;
 import com.ecohabitat.ecoaction_service.models.Ecoaction;
 import com.ecohabitat.ecoaction_service.services.EcoactionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,8 +75,21 @@ public class EcoactionController {
         return new ResponseEntity<>("Deleted Habitat", HttpStatus.OK);
     }
 
-    //2024-05-_28
-    // Obtener ecoacción por usuario ID
+    //Creación de objetos en APIS remotas
+
+    //User
+    @PostMapping ("/user")
+    ResponseEntity<?> createEcouser(@RequestBody EcoUserDTO ecoUserDTO) {
+        EcoUserDTO ecoUser = ecoactionService.createEcoUser(ecoUserDTO);
+        return new ResponseEntity<>(ecoUser, HttpStatus.OK);
+    }
+
+    // create habitat
+    @PostMapping ("/habitat")
+    ResponseEntity<?> createEcohabitat(@RequestBody EcoHabitatDTO ecoHabitatDTO) {
+        EcoHabitatDTO ecoHabitat = ecoactionService.createEcoHabitat(ecoHabitatDTO);
+        return new ResponseEntity<>(ecoHabitatDTO, HttpStatus.OK);
+    }
 
 
 }
