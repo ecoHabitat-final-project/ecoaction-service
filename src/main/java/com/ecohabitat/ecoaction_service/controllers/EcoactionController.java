@@ -57,7 +57,7 @@ public class EcoactionController {
 
     @PostMapping("")
     ResponseEntity<?> createEcoaction(@RequestBody Ecoaction ecoaction) {
-        createEcoaction(ecoaction);
+        ecoactionService.createEcoaction(ecoaction);
         return new ResponseEntity<>(ecoaction, HttpStatus.OK);
     }
     // por si la reforma ecológica hubiera sido en otro habitat.
